@@ -30,7 +30,7 @@ public class HelloApplication extends Application {
     Button multiplyButton;
     Button divideButton;
     Button clearButton;
-    String operator = "ERROR!";
+    String operator;
     String first = "";
     String second = "";
     Button equalsButton;
@@ -61,7 +61,7 @@ public class HelloApplication extends Application {
         label1.setText("Ready to do some math :)");
         first = "";
         second = "";
-        operator = "ERROR!";
+        operator = notSet;
         done = false;
     }
 
