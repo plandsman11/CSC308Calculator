@@ -44,28 +44,37 @@ public class HelloApplication extends Application {
         second = "";
     }
 
-    public double doMath(){
-        if(operator.equals("+")){
-            return Integer.parseInt(first) + (double)Integer.parseInt(second);
-        }
-        else if(operator.equals("-")){
-            return Integer.parseInt(first) - (double)Integer.parseInt(second);
-        }
-        else if(operator.equals("*")){
-            return Integer.parseInt(first) * (double)Integer.parseInt(second);
-        }
-        else if(operator.equals("/") && Integer.parseInt(second) != 0) {
-            return (double) Integer.parseInt(first) / (double)Integer.parseInt(second);
-        }
-        return 0;
-    }
-
     public void reset(){
         label1.setText("Ready to do some math :)");
         first = "";
         second = "";
         operator = notSet;
         done = false;
+    }
+
+    public void doMath(){
+        double answer = 0;
+
+        if(operator.equals("/") && second.equals("0")) {
+            reset();
+            label1.setText("Cannot divide by zero, try new numbers");
+            return;
+        }
+        else if(operator.equals("+")){
+            answer = Integer.parseInt(first) + (double)Integer.parseInt(second);
+        }
+        else if(operator.equals("-")){
+            answer = Integer.parseInt(first) - (double)Integer.parseInt(second);
+        }
+        else if(operator.equals("*")){
+            answer = Integer.parseInt(first) * (double)Integer.parseInt(second);
+        }
+        else if(operator.equals("/")){
+            answer = (double) Integer.parseInt(first) / (double)Integer.parseInt(second);
+        }
+        label1.setText(label1.getText() + "=" + answer);
+        done = true;
+
     }
 
     public void handleHelper(String num){
@@ -80,6 +89,8 @@ public class HelloApplication extends Application {
             label1.setText(first + operator + second);
         }
     }
+
+
 
     public void setUpButtons(){
         button0 = new Button("0");
@@ -187,14 +198,8 @@ public class HelloApplication extends Application {
         equalsButton = new Button("=");
         equalsButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if(second.equals("0")){
-                    reset();
-                    label1.setText("Cannot divide by zero, try new numbers");
-                }
-                else if(!done && !first.equals("") && !second.equals("") && !operator.equals(notSet)){
-                    double answer = doMath();
-                    label1.setText(label1.getText() + "=" + answer);
-                    done = true;
+                if(!done && !first.equals("") && !second.equals("") && !operator.equals(notSet)){
+                    doMath();
                 }
             }
         });
