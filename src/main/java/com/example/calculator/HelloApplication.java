@@ -31,14 +31,17 @@ public class HelloApplication extends Application {
     Button divideButton;
     Button clearButton;
     String operator;
-    String first = "";
-    String second = "";
+    String first;
+    String second;
     Button equalsButton;
     boolean done = false;
     String notSet = "ERROR!";
 
     public void setUpLabels(){
         label1 = new Label("Ready to do some math :)");
+        operator = notSet;
+        first = "";
+        second = "";
     }
 
     public double doMath(){
@@ -65,155 +68,78 @@ public class HelloApplication extends Application {
         done = false;
     }
 
+    public void handleHelper(String num){
+        if(done)
+            reset();
+        if (operator.equals(notSet)) {
+            first = first + num;
+            label1.setText(first);
+        }
+        else {
+            second = second + num;
+            label1.setText(first + operator + second);
+        }
+    }
+
     public void setUpButtons(){
         button0 = new Button("0");
         button0.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if(done)
-                    reset();
-                if (operator.equals(notSet)) {
-                    first = first + "0";
-                    label1.setText(first);
-                }
-                else {
-                    second = second + "0";
-                    label1.setText(first + operator + second);
-                }
+                handleHelper("0");
             }
         });
         button1 = new Button("1");
         button1.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if(done)
-                    reset();
-                if (operator.equals(notSet)) {
-                    first = first + "1";
-                    label1.setText(first);
-                }
-                else {
-                    second = second + "1";
-                    label1.setText(first + operator + second);
-                }
+                handleHelper("1");
             }
         });
         button2 = new Button("2");
         button2.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if(done)
-                    reset();
-                if (operator.equals(notSet)) {
-                    first = first + "2";
-                    label1.setText(first);
-                }
-                else {
-                    second = second + "2";
-                    label1.setText(first + operator + second);
-                }
+                handleHelper("2");
             }
         });
         button3 = new Button("3");
         button3.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if(done)
-                    reset();
-                if (operator.equals(notSet)) {
-                    first = first + "3";
-                    label1.setText(first);
-                }
-                else {
-                    second = second + "3";
-                    label1.setText(first + operator + second);
-                }
+                handleHelper("3");
             }
         });
         button4 = new Button("4");
         button4.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if(done)
-                    reset();
-                if (operator.equals(notSet)) {
-                    first = first + "4";
-                    label1.setText(first);
-                }
-                else {
-                    second = second + "4";
-                    label1.setText(first + operator + second);
-                }
+                handleHelper("4");
             }
         });
         button5 = new Button("5");
         button5.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if(done)
-                    reset();
-                if (operator.equals(notSet)) {
-                    first = first + "5";
-                    label1.setText(first);
-                }
-                else {
-                    second = second + "5";
-                    label1.setText(first + operator + second);
-                }
+                handleHelper("5");
             }
         });
         button6 = new Button("6");
         button6.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if(done)
-                    reset();
-                if (operator.equals(notSet)) {
-                    first = first + "6";
-                    label1.setText(first);
-                }
-                else {
-                    second = second + "6";
-                    label1.setText(first + operator + second);
-                }
+                handleHelper("6");
             }
         });
         button7 = new Button("7");
         button7.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if(done)
-                    reset();
-                if (operator.equals(notSet)) {
-                    first = first + "7";
-                    label1.setText(first);
-                }
-                else {
-                    second = second + "7";
-                    label1.setText(first + operator + second);
-                }
+                handleHelper("6");
             }
         });
         button8 = new Button("8");
         button8.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if(done)
-                    reset();
-                if (operator.equals(notSet)) {
-                    first = first + "8";
-                    label1.setText(first);
-                }
-                else {
-                    second = second + "8";
-                    label1.setText(first + operator + second);
-                }
+                handleHelper("8");
             }
         });
         button9 = new Button("9");
         button9.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if(done)
-                    reset();
-                if (operator.equals(notSet)) {
-                    first = first + "9";
-                    label1.setText(first);
-                }
-                else {
-                    second = second + "9";
-                    label1.setText(first + operator + second);
-                }
+                handleHelper("9");
             }
         });
         addButton = new Button("+");
