@@ -187,7 +187,11 @@ public class HelloApplication extends Application {
         equalsButton = new Button("=");
         equalsButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if(!done && !first.equals("") && !second.equals("") && !operator.equals(notSet)){
+                if(second.equals("0")){
+                    reset();
+                    label1.setText("Cannot divide by zero, try new numbers");
+                }
+                else if(!done && !first.equals("") && !second.equals("") && !operator.equals(notSet)){
                     double answer = doMath();
                     label1.setText(label1.getText() + "=" + answer);
                     done = true;
