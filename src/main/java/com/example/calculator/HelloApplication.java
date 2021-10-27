@@ -35,6 +35,7 @@ public class HelloApplication extends Application {
     String second = "";
     Button equalsButton;
     boolean done = false;
+    String notSet = "ERROR!";
 
     public void setUpLabels(){
         label1 = new Label("Ready to do some math :)");
@@ -42,16 +43,16 @@ public class HelloApplication extends Application {
 
     public double doMath(){
         if(operator.equals("+")){
-            return Integer.parseInt(first) + Integer.parseInt(second);
+            return Integer.parseInt(first) + (double)Integer.parseInt(second);
         }
         else if(operator.equals("-")){
-            return Integer.parseInt(first) - Integer.parseInt(second);
+            return Integer.parseInt(first) - (double)Integer.parseInt(second);
         }
         else if(operator.equals("*")){
-            return Integer.parseInt(first) * Integer.parseInt(second);
+            return Integer.parseInt(first) * (double)Integer.parseInt(second);
         }
         else if(operator.equals("/") && Integer.parseInt(second) != 0) {
-            return (double) Integer.parseInt(first) / Integer.parseInt(second);
+            return (double) Integer.parseInt(first) / (double)Integer.parseInt(second);
         }
         return 0;
     }
@@ -70,7 +71,7 @@ public class HelloApplication extends Application {
             public void handle(ActionEvent event){
                 if(done)
                     reset();
-                if (operator.equals("ERROR!")) {
+                if (operator.equals(notSet)) {
                     first = first + "0";
                     label1.setText(first);
                 }
@@ -85,7 +86,7 @@ public class HelloApplication extends Application {
             public void handle(ActionEvent event){
                 if(done)
                     reset();
-                if (operator.equals("ERROR!")) {
+                if (operator.equals(notSet)) {
                     first = first + "1";
                     label1.setText(first);
                 }
@@ -100,7 +101,7 @@ public class HelloApplication extends Application {
             public void handle(ActionEvent event){
                 if(done)
                     reset();
-                if (operator.equals("ERROR!")) {
+                if (operator.equals(notSet)) {
                     first = first + "2";
                     label1.setText(first);
                 }
@@ -115,7 +116,7 @@ public class HelloApplication extends Application {
             public void handle(ActionEvent event){
                 if(done)
                     reset();
-                if (operator.equals("ERROR!")) {
+                if (operator.equals(notSet)) {
                     first = first + "3";
                     label1.setText(first);
                 }
@@ -130,7 +131,7 @@ public class HelloApplication extends Application {
             public void handle(ActionEvent event){
                 if(done)
                     reset();
-                if (operator.equals("ERROR!")) {
+                if (operator.equals(notSet)) {
                     first = first + "4";
                     label1.setText(first);
                 }
@@ -145,7 +146,7 @@ public class HelloApplication extends Application {
             public void handle(ActionEvent event){
                 if(done)
                     reset();
-                if (operator.equals("ERROR!")) {
+                if (operator.equals(notSet)) {
                     first = first + "5";
                     label1.setText(first);
                 }
@@ -160,7 +161,7 @@ public class HelloApplication extends Application {
             public void handle(ActionEvent event){
                 if(done)
                     reset();
-                if (operator.equals("ERROR!")) {
+                if (operator.equals(notSet)) {
                     first = first + "6";
                     label1.setText(first);
                 }
@@ -175,7 +176,7 @@ public class HelloApplication extends Application {
             public void handle(ActionEvent event){
                 if(done)
                     reset();
-                if (operator.equals("ERROR!")) {
+                if (operator.equals(notSet)) {
                     first = first + "7";
                     label1.setText(first);
                 }
@@ -190,7 +191,7 @@ public class HelloApplication extends Application {
             public void handle(ActionEvent event){
                 if(done)
                     reset();
-                if (operator.equals("ERROR!")) {
+                if (operator.equals(notSet)) {
                     first = first + "8";
                     label1.setText(first);
                 }
@@ -205,7 +206,7 @@ public class HelloApplication extends Application {
             public void handle(ActionEvent event){
                 if(done)
                     reset();
-                if (operator.equals("ERROR!")) {
+                if (operator.equals(notSet)) {
                     first = first + "9";
                     label1.setText(first);
                 }
@@ -218,7 +219,7 @@ public class HelloApplication extends Application {
         addButton = new Button("+");
         addButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if (operator.equals("ERROR!") && !first.equals("")) {
+                if (operator.equals(notSet) && !first.equals("")) {
                     label1.setText(first + "+");
                     operator = "+";
                 }
@@ -227,7 +228,7 @@ public class HelloApplication extends Application {
         subButton = new Button("-");
         subButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if (operator.equals("ERROR!") && !first.equals("")) {
+                if (operator.equals(notSet) && !first.equals("")) {
                     label1.setText(first + "-");
                     operator = "-";
                 }
@@ -236,7 +237,7 @@ public class HelloApplication extends Application {
         multiplyButton = new Button("*");
         multiplyButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if (operator.equals("ERROR!") && !first.equals("")) {
+                if (operator.equals(notSet) && !first.equals("")) {
                     label1.setText(first + "*");
                     operator = "*";
                 }
@@ -245,7 +246,7 @@ public class HelloApplication extends Application {
         divideButton = new Button("/");
         divideButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if (operator.equals("ERROR!") && !first.equals("")) {
+                if (operator.equals(notSet) && !first.equals("")) {
                     label1.setText(first + "/");
                     operator = "/";
                 }
@@ -260,7 +261,7 @@ public class HelloApplication extends Application {
         equalsButton = new Button("=");
         equalsButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if(!done && !first.equals("") && !second.equals("") && !operator.equals("ERROR!")){
+                if(!done && !first.equals("") && !second.equals("") && !operator.equals(notSet)){
                     double answer = doMath();
                     label1.setText(label1.getText() + "=" + answer);
                     done = true;
