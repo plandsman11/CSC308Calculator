@@ -55,21 +55,21 @@ public class HelloApplication extends Application {
 
     public void doMath(){
         double answer = 0;
-        if(operator.equals("/") && second.equals("0")) {
+        if(operator.equals(" / ") && second.equals("0")) {
             reset();
             label1.setText("Error");
             return;
         }
-        else if(operator.equals("+")){
+        else if(operator.equals(" + ")){
             answer = Integer.parseInt(first) + (double)Integer.parseInt(second);
         }
-        else if(operator.equals("-")){
+        else if(operator.equals(" - ")){
             answer = Integer.parseInt(first) - (double)Integer.parseInt(second);
         }
-        else if(operator.equals("*")){
+        else if(operator.equals(" * ")){
             answer = Integer.parseInt(first) * (double)Integer.parseInt(second);
         }
-        else if(operator.equals("/")){
+        else if(operator.equals(" / ")){
             answer = (double) Integer.parseInt(first) / (double)Integer.parseInt(second);
         }
         else if(operator.equals("log")){
@@ -85,7 +85,7 @@ public class HelloApplication extends Application {
             }
             answer = Math.log10(Integer.parseInt(second));
         }
-        label1.setText(label1.getText() + "=" + answer);
+        label1.setText(label1.getText() + " = " + answer);
         done = true;
     }
 
@@ -104,8 +104,8 @@ public class HelloApplication extends Application {
 
     public void handleSubAndNeg(){
         if (operator.equals(notSet) && !first.equals("")) {
-            label1.setText(first + "-");
-            operator = "-";
+            label1.setText(first + " - ");
+            operator = " - ";
         }
         else if (first.equals("") ||
                 (second.equals("") && !operator.equals(notSet))){
@@ -188,8 +188,8 @@ public class HelloApplication extends Application {
         addButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
                 if (operator.equals(notSet) && !first.equals("")) {
-                    label1.setText(first + "+");
-                    operator = "+";
+                    label1.setText(first + " + ");
+                    operator = " + ";
                 }
             }
         });
@@ -203,8 +203,8 @@ public class HelloApplication extends Application {
         multiplyButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
                 if (operator.equals(notSet) && !first.equals("")) {
-                    label1.setText(first + "*");
-                    operator = "*";
+                    label1.setText(first + " * ");
+                    operator = " * ";
                 }
             }
         });
@@ -212,8 +212,8 @@ public class HelloApplication extends Application {
         divideButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
                 if (operator.equals(notSet) && !first.equals("")) {
-                    label1.setText(first + "/");
-                    operator = "/";
+                    label1.setText(first + " / ");
+                    operator = " / ";
                 }
             }
         });
