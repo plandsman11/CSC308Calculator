@@ -30,6 +30,7 @@ public class HelloApplication extends Application {
     Button multiplyButton;
     Button divideButton;
     Button clearButton;
+    Button log10Button;
     String operator;
     String first;
     String second;
@@ -54,10 +55,9 @@ public class HelloApplication extends Application {
 
     public void doMath(){
         double answer = 0;
-
         if(operator.equals("/") && second.equals("0")) {
             reset();
-            label1.setText("Cannot divide by zero, try new numbers");
+            label1.setText("Error");
             return;
         }
         else if(operator.equals("+")){
@@ -72,9 +72,21 @@ public class HelloApplication extends Application {
         else if(operator.equals("/")){
             answer = (double) Integer.parseInt(first) / (double)Integer.parseInt(second);
         }
+        else if(operator.equals("log")){
+            if(Integer.parseInt(second) == 0){
+                reset();
+                label1.setText("-infinity");
+                return;
+            }
+            else if(Integer.parseInt(second) < 0){
+                reset();
+                label1.setText("Error");
+                return;
+            }
+            answer = Math.log10(Integer.parseInt(second));
+        }
         label1.setText(label1.getText() + "=" + answer);
         done = true;
-
     }
 
     public void handleHelper(String num){
@@ -89,8 +101,6 @@ public class HelloApplication extends Application {
             label1.setText(first + operator + second);
         }
     }
-
-
 
     public void setUpButtons(){
         button0 = new Button("0");
@@ -169,6 +179,10 @@ public class HelloApplication extends Application {
                     label1.setText(first + "-");
                     operator = "-";
                 }
+                else if (first.equals("") ||
+                        (second.equals("") && !operator.equals(notSet))){
+                    handleHelper("-");
+                }
             }
         });
         multiplyButton = new Button("*");
@@ -186,6 +200,18 @@ public class HelloApplication extends Application {
                 if (operator.equals(notSet) && !first.equals("")) {
                     label1.setText(first + "/");
                     operator = "/";
+                }
+            }
+        });
+        log10Button = new Button("log");
+        log10Button.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event){
+                if(done)
+                    reset();
+                if(operator.equals(notSet) && first.equals("")){
+                    label1.setText("log");
+                    operator = "log";
+                    first = " ";
                 }
             }
         });
@@ -219,7 +245,8 @@ public class HelloApplication extends Application {
         setUpLabels();
         setUpButtons();
 
-        row0.getChildren().addAll(addButton, subButton, multiplyButton, divideButton);
+
+        row0.getChildren().addAll(addButton, subButton, multiplyButton, divideButton, log10Button);
         row1.getChildren().addAll(button1, button2, button3);
         row2.getChildren().addAll(button4, button5, button6);
         row3.getChildren().addAll(button7, button8, button9);
