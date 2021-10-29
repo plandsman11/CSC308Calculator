@@ -102,6 +102,27 @@ public class HelloApplication extends Application {
         }
     }
 
+    public void handleSubAndNeg(){
+        if (operator.equals(notSet) && !first.equals("")) {
+            label1.setText(first + "-");
+            operator = "-";
+        }
+        else if (first.equals("") ||
+                (second.equals("") && !operator.equals(notSet))){
+            handleHelper("-");
+        }
+    }
+
+    public void handleLog(){
+        if(done)
+            reset();
+        if(operator.equals(notSet) && first.equals("")){
+            label1.setText("log");
+            operator = "log";
+            first = " ";
+        }
+    }
+
     public void setUpButtons(){
         button0 = new Button("0");
         button0.setOnAction(new EventHandler<ActionEvent>() {
@@ -175,14 +196,7 @@ public class HelloApplication extends Application {
         subButton = new Button("-");
         subButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if (operator.equals(notSet) && !first.equals("")) {
-                    label1.setText(first + "-");
-                    operator = "-";
-                }
-                else if (first.equals("") ||
-                        (second.equals("") && !operator.equals(notSet))){
-                    handleHelper("-");
-                }
+                handleSubAndNeg();
             }
         });
         multiplyButton = new Button("*");
@@ -206,13 +220,7 @@ public class HelloApplication extends Application {
         log10Button = new Button("log");
         log10Button.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
-                if(done)
-                    reset();
-                if(operator.equals(notSet) && first.equals("")){
-                    label1.setText("log");
-                    operator = "log";
-                    first = " ";
-                }
+                handleLog();
             }
         });
         clearButton = new Button("Clear");
